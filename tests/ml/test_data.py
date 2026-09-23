@@ -41,3 +41,28 @@ def test_rejects_duplicate_timestamps(tmp_path: Path) -> None:
 
     with pytest.raises(DataError, match="duplicate timestamps"):
         load_training_data(source, turbine_id="turbine_1")
+
+
+def test_rejects_missing_file_columns_invalid_empty_and_incomplete(tmp_path: Path) -> None:
+    with pytest.raises(FileNotFoundError):
+        load_training_data(tmp_path / "missing.csv", turbine_id="turbine_1")
+
+    missing_column = tmp_path / "missing-column.csv"
+    pd.DataFrame({"ID": [1]}).to_csv(missing_column, index=False)
+    with pytest.raises(DataError, match="missing columns"):
+        load_training_data(missing_column, turbine_id="turbine_1")
+
+    invalid = tmp_path / "invalid.csv"
+    _write_source(invalid, ["not-a-time"])
+    with pytest.raises(DataError, match="invalid value"):
+        load_training_data(invalid, turbine_id="turbine_1")
+
+    empty = tmp_path / "empty.csv"
+    _write_source(empty, [])
+    with pytest.raises(DataError, match="empty dataset"):
+        load_training_data(empty, turbine_id="turbine_1")
+
+    incomplete = tmp_path / "incomplete.csv"
+    _write_source(incomplete, ["2025-01-01 0:00:00"])
+    with pytest.raises(DataError, match="no complete hours"):
+        load_training_data(incomplete, turbine_id="turbine_1")

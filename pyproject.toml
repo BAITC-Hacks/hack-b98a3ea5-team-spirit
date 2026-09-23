@@ -4,10 +4,13 @@ version = "0.1.0"
 description = "Wind-turbine power model selection for HackAlem"
 requires-python = ">=3.11,<3.15"
 dependencies = [
+  "fastapi>=0.116",
+  "httpx>=0.28",
   "joblib>=1.4",
   "numpy>=1.26",
   "pandas>=2.2",
   "scikit-learn>=1.5",
+  "uvicorn>=0.35",
 ]
 
 [dependency-groups]
@@ -18,7 +21,7 @@ dev = [
 ]
 
 [tool.pytest.ini_options]
-testpaths = ["tests/ml"]
+testpaths = ["tests"]
 addopts = "--strict-markers"
 
 [tool.ruff]

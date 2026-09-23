@@ -1,0 +1,16 @@
+{
+  "turbines": [
+    {
+      "id": "turbine_1",
+      "name": "Turbine 1",
+      "latitude": 43.64515,
+      "longitude": 78.535604
+    },
+    {
+      "id": "turbine_2",
+      "name": "Turbine 2",
+      "latitude": 43.643198,
+      "longitude": 78.538828
+    }
+  ]
+}
