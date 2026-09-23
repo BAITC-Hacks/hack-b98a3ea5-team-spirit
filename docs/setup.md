@@ -20,3 +20,5 @@ uv run python -m ml.cli train --config config/training.json --n-jobs -1
 ```
 
 The scikit-learn estimators in this project do not use the NVIDIA GPU.
+Full-run artifacts are saved under `storage/models/production/`; smoke artifacts
+are isolated under `storage/models/production/smoke/`.

@@ -17,7 +17,7 @@ Run the complete two-stage search on the remote machine:
 uv run python -m ml.cli train --config config/training.json --n-jobs -1
 ```
 
-Artifacts are written to `storage/models/<turbine_id>/`. Selection uses
+Artifacts are written to `storage/models/production/<turbine_id>/`. Selection uses
 chronological cross-validation. January 2026 is reported only as an independent
 power-curve evaluation and does not influence model or parameter selection.
 
