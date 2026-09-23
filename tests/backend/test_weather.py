@@ -10,7 +10,7 @@ from backend.app.settings import Settings, Turbine
 from backend.app.weather import WeatherClient, WeatherError
 
 ISSUE = datetime(2026, 1, 31, tzinfo=UTC)
-TURBINE = Turbine("turbine_1", "Turbine 1", 43.64515, 78.535604)
+TURBINE = Turbine("turbine_1", "Turbine 1", 43.5381, 79.4658)
 
 
 def settings(tmp_path: Path) -> Settings:

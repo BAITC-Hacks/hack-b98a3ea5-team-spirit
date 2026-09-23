@@ -104,6 +104,7 @@ were not supplied.
 The application uses the free
 [Open-Meteo Single Runs API](https://open-meteo.com/en/docs/single-runs-api):
 
+- weather reference point for both turbines: `43.5381, 79.4658` (nearest station);
 - endpoint: `https://single-runs-api.open-meteo.com/v1/forecast`;
 - model: ECMWF IFS HRES, requested as `ecmwf_ifs`;
 - variables: `wind_speed_10m` and `temperature_2m`;

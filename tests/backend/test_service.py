@@ -47,8 +47,8 @@ class FakeWeather:
 
 def test_both_turbines_returns_48_points_and_honest_farm_mean(tmp_path: Path) -> None:
     turbines = {
-        "turbine_1": Turbine("turbine_1", "Turbine 1", 43.64515, 78.535604),
-        "turbine_2": Turbine("turbine_2", "Turbine 2", 43.643198, 78.538828),
+        "turbine_1": Turbine("turbine_1", "Turbine 1", 43.5381, 79.4658),
+        "turbine_2": Turbine("turbine_2", "Turbine 2", 43.5381, 79.4658),
     }
     settings = Settings(tmp_path, tmp_path / "models", tmp_path / "dist", turbines)
     service = ForecastService(settings, weather=FakeWeather(), models=FakeModels())
@@ -65,7 +65,7 @@ def test_both_turbines_returns_48_points_and_honest_farm_mean(tmp_path: Path) ->
 
 
 def test_single_turbine_propagates_fallback_warning(tmp_path: Path) -> None:
-    turbine = Turbine("turbine_1", "Turbine 1", 43.64515, 78.535604)
+    turbine = Turbine("turbine_1", "Turbine 1", 43.5381, 79.4658)
     settings = Settings(tmp_path, tmp_path / "models", tmp_path / "dist", {turbine.id: turbine})
     weather = FakeWeather()
     weather.cache_status = "stale-cache-fallback"

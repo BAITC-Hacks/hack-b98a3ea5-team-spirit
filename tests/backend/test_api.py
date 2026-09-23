@@ -22,8 +22,8 @@ from backend.app.weather import WeatherError
 def settings(tmp_path: Path, *, models: bool = True) -> Settings:
     model_dir = tmp_path / "models"
     turbines = {
-        "turbine_1": Turbine("turbine_1", "Turbine 1", 43.64515, 78.535604),
-        "turbine_2": Turbine("turbine_2", "Turbine 2", 43.643198, 78.538828),
+        "turbine_1": Turbine("turbine_1", "Turbine 1", 43.5381, 79.4658),
+        "turbine_2": Turbine("turbine_2", "Turbine 2", 43.5381, 79.4658),
     }
     if models:
         for turbine_id in turbines:
@@ -87,9 +87,20 @@ def test_system_and_turbine_routes(tmp_path: Path) -> None:
     turbines = client.get("/api/turbines")
     assert turbines.status_code == 200
     assert turbines.json() == [
-        {"id": "turbine_1", "name": "Turbine 1", "latitude": 43.64515, "longitude": 78.535604},
-        {"id": "turbine_2", "name": "Turbine 2", "latitude": 43.643198, "longitude": 78.538828},
+        {"id": "turbine_1", "name": "Turbine 1", "latitude": 43.5381, "longitude": 79.4658},
+        {"id": "turbine_2", "name": "Turbine 2", "latitude": 43.5381, "longitude": 79.4658},
     ]
+
+
+def test_production_config_uses_weather_station_coordinates(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    monkeypatch.delenv("TURBINES_CONFIG", raising=False)
+    configured = Settings.from_env()
+
+    assert {
+        (turbine.latitude, turbine.longitude) for turbine in configured.turbines.values()
+    } == {(43.5381, 79.4658)}
 
 
 def test_ready_returns_503_without_models(tmp_path: Path) -> None:
