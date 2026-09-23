@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+import joblib
 import pandas as pd
 
 from ml.train import MODEL_NAMES, build_models, train_all
@@ -88,7 +89,19 @@ def test_smoke_training_creates_model_and_honest_manifest(tmp_path: Path) -> Non
 
     artifact_dir = tmp_path / "artifacts" / "smoke" / "turbine_1"
     manifest = json.loads((artifact_dir / "manifest.json").read_text(encoding="utf-8"))
-    assert (artifact_dir / "model.joblib").is_file()
+    model_path = artifact_dir / "model.joblib"
+    assert model_path.is_file()
+    assert model_path.read_bytes()[:6] == b"\xfd7zXZ\x00"
+    assert joblib.load(model_path).predict(
+        pd.DataFrame(
+            {
+                "wind_speed_ms": [5.0],
+                "temperature_c": [10.0],
+                "month": [1],
+                "season": [1],
+            }
+        )
+    ).shape == (1,)
     assert result["results"][0]["selected_model"] in config["smoke_models"]
     assert manifest["test_period"]["role"].startswith("independent")
     assert "not a demonstrated 24/48-hour" in manifest["limitation"]

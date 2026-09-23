@@ -70,3 +70,12 @@
 - Исправление: удалить только `._*` из временной remote-копии перед проверками.
 - Проверка или regression-тест: повторный remote `scripts/verify.sh` — 8 passed, lint clean.
 - Как предотвратить повторение: создавать переносимый архив с отключённым копированием macOS metadata или очищать `._*` до lint.
+
+### 2026-09-23 — GitHub LFS budget исчерпан
+
+- Контекст: публикация production-моделей ExtraTrees в GitHub.
+- Симптом: LFS upload отклонён сообщением `repository exceeded its LFS budget`; несжатая модель turbine 1 также превышала обычный лимит GitHub 100 MB.
+- Корневая причина: joblib сохранял модели без compression, а квота Git LFS организации была исчерпана.
+- Исправление: пересохранить те же estimator-объекты через `joblib.dump(..., compress=("xz", 3))`; размеры снизились примерно до 40 MB и 15 MB без изменения predictions.
+- Проверка или regression-тест: smoke-тест проверяет XZ magic и загрузку модели; production-модели повторно загружены, predictions совпали побитово.
+- Как предотвратить повторение: training pipeline всегда сохраняет joblib с XZ-compression, поэтому LFS для текущих моделей не требуется.

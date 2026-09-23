@@ -230,7 +230,7 @@ def _atomic_dump(model: Pipeline, path: Path) -> None:
     with tempfile.NamedTemporaryFile(dir=path.parent, delete=False) as handle:
         temporary = Path(handle.name)
     try:
-        joblib.dump(model, temporary)
+        joblib.dump(model, temporary, compress=("xz", 3))
         os.replace(temporary, path)
     finally:
         temporary.unlink(missing_ok=True)

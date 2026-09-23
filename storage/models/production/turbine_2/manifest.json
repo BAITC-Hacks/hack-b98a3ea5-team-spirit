@@ -1,0 +1,330 @@
+{
+  "turbine_id": "turbine_2",
+  "smoke": false,
+  "trained_at_utc": "2026-09-23T11:06:50.538645+00:00",
+  "source_path": "/home/ubuntu/hackalem-ml.WhKW6T/ml/train_data/Dataset HackAlemAI для участников 11.03.2023-28.02.2026 - turbine 2.csv",
+  "data_summary": {
+    "source_rows": 149499,
+    "hourly_rows": 24785,
+    "dropped_incomplete_hours": 219,
+    "first_timestamp": "2023-03-11T00:00:00",
+    "last_timestamp": "2026-01-31T23:00:00"
+  },
+  "feature_columns": [
+    "wind_speed_ms",
+    "temperature_c",
+    "month",
+    "season"
+  ],
+  "selected_model": "extra_trees",
+  "selection_metric": "mean cross-validation MAE",
+  "test_period": {
+    "start": "2026-01-01T00:00:00",
+    "end": "2026-01-31T23:00:00",
+    "role": "independent power-curve evaluation; not used for selection"
+  },
+  "baseline": {
+    "model": "dummy_median",
+    "stage": "baseline",
+    "cv_mae": 0.3080779663837577,
+    "cv_mae_std": 0.022441313444478122,
+    "best_params": {},
+    "grid_candidates": 1,
+    "fit_seconds": 0.047
+  },
+  "coarse_results": [
+    {
+      "model": "decision_tree",
+      "stage": "coarse",
+      "cv_mae": 0.02460263610755815,
+      "cv_mae_std": 0.003641260900423478,
+      "best_params": {
+        "model__max_depth": 8,
+        "model__min_samples_leaf": 1
+      },
+      "grid_candidates": 4,
+      "fit_seconds": 0.203
+    },
+    {
+      "model": "random_forest",
+      "stage": "coarse",
+      "cv_mae": 0.023299604514980393,
+      "cv_mae_std": 0.003503127154169067,
+      "best_params": {
+        "model__max_depth": 16,
+        "model__min_samples_leaf": 4,
+        "model__n_estimators": 300
+      },
+      "grid_candidates": 4,
+      "fit_seconds": 18.618
+    },
+    {
+      "model": "extra_trees",
+      "stage": "coarse",
+      "cv_mae": 0.023335633798014687,
+      "cv_mae_std": 0.003706303843324794,
+      "best_params": {
+        "model__max_depth": 16,
+        "model__min_samples_leaf": 4,
+        "model__n_estimators": 300
+      },
+      "grid_candidates": 4,
+      "fit_seconds": 8.147
+    },
+    {
+      "model": "hist_gradient_boosting",
+      "stage": "coarse",
+      "cv_mae": 0.02307464039317996,
+      "cv_mae_std": 0.003986477796899786,
+      "best_params": {
+        "model__learning_rate": 0.12,
+        "model__max_leaf_nodes": 15
+      },
+      "grid_candidates": 4,
+      "fit_seconds": 0.455
+    },
+    {
+      "model": "gradient_boosting",
+      "stage": "coarse",
+      "cv_mae": 0.023345232402405765,
+      "cv_mae_std": 0.004040538750362416,
+      "best_params": {
+        "model__max_depth": 4,
+        "model__n_estimators": 200
+      },
+      "grid_candidates": 4,
+      "fit_seconds": 10.849
+    },
+    {
+      "model": "ada_boost",
+      "stage": "coarse",
+      "cv_mae": 0.04573079873485891,
+      "cv_mae_std": 0.004077227963096538,
+      "best_params": {
+        "model__learning_rate": 0.05,
+        "model__n_estimators": 200
+      },
+      "grid_candidates": 4,
+      "fit_seconds": 3.73
+    },
+    {
+      "model": "bagging",
+      "stage": "coarse",
+      "cv_mae": 0.023797502912298187,
+      "cv_mae_std": 0.0035409811229810354,
+      "best_params": {
+        "model__max_samples": 0.7,
+        "model__n_estimators": 300
+      },
+      "grid_candidates": 4,
+      "fit_seconds": 19.093
+    },
+    {
+      "model": "linear_regression",
+      "stage": "coarse",
+      "cv_mae": 0.08640555470231917,
+      "cv_mae_std": 0.004960086431673748,
+      "best_params": {
+        "model__fit_intercept": true
+      },
+      "grid_candidates": 2,
+      "fit_seconds": 0.078
+    },
+    {
+      "model": "ridge",
+      "stage": "coarse",
+      "cv_mae": 0.08640601409881352,
+      "cv_mae_std": 0.004960524658331101,
+      "best_params": {
+        "model__alpha": 0.1
+      },
+      "grid_candidates": 2,
+      "fit_seconds": 0.066
+    },
+    {
+      "model": "lasso",
+      "stage": "coarse",
+      "cv_mae": 0.08638915659042681,
+      "cv_mae_std": 0.004929412117657408,
+      "best_params": {
+        "model__alpha": 0.0001
+      },
+      "grid_candidates": 2,
+      "fit_seconds": 0.09
+    },
+    {
+      "model": "elastic_net",
+      "stage": "coarse",
+      "cv_mae": 0.08639209324026895,
+      "cv_mae_std": 0.004934614105514221,
+      "best_params": {
+        "model__alpha": 0.0001,
+        "model__l1_ratio": 0.8
+      },
+      "grid_candidates": 4,
+      "fit_seconds": 0.128
+    },
+    {
+      "model": "huber",
+      "stage": "coarse",
+      "cv_mae": 0.08601895904276544,
+      "cv_mae_std": 0.004757288058406184,
+      "best_params": {
+        "model__alpha": 0.0001,
+        "model__epsilon": 1.2
+      },
+      "grid_candidates": 4,
+      "fit_seconds": 0.158
+    },
+    {
+      "model": "knn",
+      "stage": "coarse",
+      "cv_mae": 0.02998817811713237,
+      "cv_mae_std": 0.00904244646223691,
+      "best_params": {
+        "model__n_neighbors": 5,
+        "model__weights": "distance"
+      },
+      "grid_candidates": 4,
+      "fit_seconds": 0.156
+    },
+    {
+      "model": "svr_rbf",
+      "stage": "coarse",
+      "cv_mae": 0.07778227753708608,
+      "cv_mae_std": 0.06698637955659979,
+      "best_params": {
+        "model__C": 1.0,
+        "model__gamma": 0.1
+      },
+      "grid_candidates": 4,
+      "fit_seconds": 1.507
+    },
+    {
+      "model": "mlp",
+      "stage": "coarse",
+      "cv_mae": 0.05335811463247212,
+      "cv_mae_std": 0.04791671869768291,
+      "best_params": {
+        "model__alpha": 0.01,
+        "model__hidden_layer_sizes": [
+          64
+        ]
+      },
+      "grid_candidates": 4,
+      "fit_seconds": 1.436
+    }
+  ],
+  "shortlisted_models": [
+    "hist_gradient_boosting",
+    "random_forest",
+    "extra_trees",
+    "gradient_boosting",
+    "bagging"
+  ],
+  "fine_results": [
+    {
+      "model": "hist_gradient_boosting",
+      "stage": "fine",
+      "cv_mae": 0.022743477871716506,
+      "cv_mae_std": 0.003781779741488637,
+      "best_params": {
+        "model__l2_regularization": 0.1,
+        "model__learning_rate": 0.02,
+        "model__max_iter": 400,
+        "model__max_leaf_nodes": 15
+      },
+      "grid_candidates": 54,
+      "fit_seconds": 5.059,
+      "january_power_curve_metrics": {
+        "mae": 0.025690610285060842,
+        "rmse": 0.06387373834194661,
+        "r2": 0.9642061622559251
+      }
+    },
+    {
+      "model": "random_forest",
+      "stage": "fine",
+      "cv_mae": 0.02316100120295748,
+      "cv_mae_std": 0.0035377470316677695,
+      "best_params": {
+        "model__max_depth": 12,
+        "model__max_features": 1.0,
+        "model__min_samples_leaf": 4,
+        "model__n_estimators": 300
+      },
+      "grid_candidates": 54,
+      "fit_seconds": 63.796,
+      "january_power_curve_metrics": {
+        "mae": 0.027216444621111956,
+        "rmse": 0.06411462655822461,
+        "r2": 0.9639356732349864
+      }
+    },
+    {
+      "model": "extra_trees",
+      "stage": "fine",
+      "cv_mae": 0.0225082428606649,
+      "cv_mae_std": 0.0034469901735638174,
+      "best_params": {
+        "model__max_depth": 12,
+        "model__max_features": 1.0,
+        "model__min_samples_leaf": 2,
+        "model__n_estimators": 300
+      },
+      "grid_candidates": 54,
+      "fit_seconds": 29.891,
+      "january_power_curve_metrics": {
+        "mae": 0.025297623473303926,
+        "rmse": 0.06348127166159433,
+        "r2": 0.9646446752041066
+      }
+    },
+    {
+      "model": "gradient_boosting",
+      "stage": "fine",
+      "cv_mae": 0.022705147777454162,
+      "cv_mae_std": 0.0035967351082944582,
+      "best_params": {
+        "model__learning_rate": 0.02,
+        "model__max_depth": 5,
+        "model__min_samples_leaf": 4,
+        "model__n_estimators": 400
+      },
+      "grid_candidates": 54,
+      "fit_seconds": 33.289,
+      "january_power_curve_metrics": {
+        "mae": 0.025925623596273005,
+        "rmse": 0.06353167923302329,
+        "r2": 0.9645885048223363
+      }
+    },
+    {
+      "model": "bagging",
+      "stage": "fine",
+      "cv_mae": 0.023408121290286358,
+      "cv_mae_std": 0.0035249598555928815,
+      "best_params": {
+        "model__max_features": 1.0,
+        "model__max_samples": 0.5,
+        "model__n_estimators": 600
+      },
+      "grid_candidates": 27,
+      "fit_seconds": 39.604,
+      "january_power_curve_metrics": {
+        "mae": 0.02853631272401407,
+        "rmse": 0.0651491042793837,
+        "r2": 0.9627625019518581
+      }
+    }
+  ],
+  "final_fit_rows": 24785,
+  "random_state": 42,
+  "versions": {
+    "python": "3.14.7",
+    "pandas": "3.0.6",
+    "scikit_learn": "1.9.1",
+    "joblib": "1.6.0"
+  },
+  "limitation": "trained on measured weather; metrics are power-curve evaluation, not a demonstrated 24/48-hour weather forecast"
+}

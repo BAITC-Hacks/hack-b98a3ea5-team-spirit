@@ -1,0 +1,12 @@
+.DS_Store
+.venv/
+.uv-cache/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+storage/models/*/
+!storage/models/production/
+!storage/models/production/**
+*.pyc
